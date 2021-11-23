@@ -8,7 +8,8 @@ const $clear = document.querySelector("#jsClear")
 const colorList = Array.from($colors)
 
 const INITIAL_COLOR = "#2c2c2c"
-const CANVAS_SIZE = 500
+const CANVAS_W_SIZE = $canvas.width
+const CANVAS_H_SIZE = $canvas.height
 const CHECKED_IMG = '✔'
 
 //setting 
@@ -20,7 +21,7 @@ onClear()
 
 function onClear(){
     ctx.fillStyle= "white"
-    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+    ctx.fillRect(0, 0, CANVAS_W_SIZE, CANVAS_H_SIZE)
 
     ctx.strokeStyle = INITIAL_COLOR
     ctx.fillStyle = INITIAL_COLOR
@@ -35,7 +36,7 @@ function onClear(){
 
 function startPainting(){
     if(filling){
-        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+        ctx.fillRect(0, 0, CANVAS_W_SIZE, CANVAS_H_SIZE)
     }else{
         painting = true
     }
@@ -62,7 +63,7 @@ function onMousemove(e){
 function startTouchPainting(e){
     onTouchmove(e)
     if(filling){
-        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+        ctx.fillRect(0, 0, CANVAS_W_SIZE, CANVAS_H_SIZE)
     }else{
         painting = true
     }
