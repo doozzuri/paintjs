@@ -8,8 +8,8 @@ const $clear = document.querySelector("#jsClear")
 const colorList = Array.from($colors)
 
 const INITIAL_COLOR = "#2c2c2c"
-const CANVAS_W_SIZE = $canvas.width
-const CANVAS_H_SIZE = $canvas.height
+const CANVAS_W_SIZE = 500
+const CANVAS_H_SIZE = 500
 const CHECKED_IMG = '✔'
 
 //setting 
