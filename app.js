@@ -13,8 +13,8 @@ const CANVAS_H_SIZE = $canvas.height
 const CHECKED_IMG = '✔'
 
 //setting 
-$canvas.width = CANVAS_SIZE
-$canvas.height = CANVAS_SIZE
+$canvas.width = CANVAS_W_SIZE
+$canvas.height = CANVAS_H_SIZE
 let painting = false
 let filling = false
 onClear()
