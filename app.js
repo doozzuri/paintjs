@@ -8,7 +8,7 @@ const $clear = document.querySelector("#jsClear")
 const colorList = Array.from($colors)
 
 const INITIAL_COLOR = "#2c2c2c"
-const CANVAS_SIZE = 700
+const CANVAS_SIZE = 500
 const CHECKED_IMG = '✔'
 
 //setting 
@@ -58,6 +58,37 @@ function onMousemove(e){
         ctx.stroke()
     }
 }
+
+function startTouchPainting(e){
+    onTouchmove(e)
+    if(filling){
+        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+    }else{
+        painting = true
+    }
+}
+function stopTouchPainting(){
+    if(!filling){
+        painting = false
+    }
+}
+
+function onTouchmove(e){
+    e.preventDefault()
+    if(filling) return false
+    const touches = e.changedTouches
+    const rect = e.target.getBoundingClientRect();
+    const x = touches[0].clientX - rect.left
+    const y = touches[0].clientY - rect.top
+    if(painting){
+        ctx.lineTo(x,y)
+        ctx.stroke()
+    }else{
+        ctx.beginPath()
+        ctx.moveTo(x,y)
+    }
+}
+
 if($canvas) {
     $canvas.addEventListener("mousedown", startPainting)
     $canvas.addEventListener("mousemove", onMousemove)
@@ -66,6 +97,10 @@ if($canvas) {
     $canvas.addEventListener("contextmenu", (e) => {
         e.preventDefault()
     })
+
+    $canvas.addEventListener("touchstart", startTouchPainting)
+    $canvas.addEventListener("touchmove", onTouchmove)
+    $canvas.addEventListener("touchend",stopTouchPainting)
 }
 
 colorList.forEach(color => color.addEventListener("click", (e) => {
